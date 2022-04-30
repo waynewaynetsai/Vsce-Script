@@ -7,6 +7,7 @@
 	"engines": {
 		"vscode": "^1.65.0"
 	},
+	"preview": true,
 	"keywords": [
 		"vim",
 		"automation"
