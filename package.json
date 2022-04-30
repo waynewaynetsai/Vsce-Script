@@ -1,0 +1,109 @@
+{
+	"name": "vsce-script",
+	"displayName": "vsce-script",
+	"publisher": "waynewaynetsai",
+	"description": "vscode extension script",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.65.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./dist/extension.js",
+	"extensionDependencies": [
+		"IBM.output-colorizer",
+		"vscodevim.vim"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"title": "Vsce Script: Load Script Project",
+				"command": "vsce-script.reloadScript"
+			},
+			{
+				"title": "Vsce Script: Open Script Project",
+				"command": "vsce-script.openProject"
+			},
+			{
+				"title": "Vsce Script: Create Script Project",
+				"command": "vsce-script.createProject"
+			},
+			{
+				"title": "Vsce Script: Select Another Script Project",
+				"command": "vsce-script.selectAnotherScriptProject"
+			},
+			{
+				"title": "Vsce Script: Show All Commands",
+				"command": "vsce-script.showAllCommands"
+			},
+			{
+				"title": "Vsce Script: Upgrade Library To Latest Version",
+				"command": "vsce-script.upgradeLibrary"
+			},
+			{
+				"title": "Vsce Script: Select Another Version of Library",
+				"command": "vsce-script.selectAnotherLibraryVersion"
+			},
+			{
+				"title": "Vsce Script: Copy Registered Command ID",
+				"command": "vsce-script.copyRegisteredCommandId"
+			}
+		],
+		"configuration": {
+			"title": "Vsce Script",
+			"properties": {
+				"vsce-script.projectPath": {
+					"type": "string",
+					"default": "",
+					"description": "Vsce Script Project path"
+				},
+				"vsce-script.commandPrefix": {
+					"type": "string",
+					"default": "vsce-script",
+					"description": "Vsce Script Command prefix"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run package",
+		"compile": "webpack --mode production",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^9.0.13",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@types/vscode": "1.65",
+		"@typescript-eslint/eslint-plugin": "^5.1.0",
+		"@typescript-eslint/parser": "^5.1.0",
+		"@vscode/test-electron": "^1.6.2",
+		"copy-webpack-plugin": "^10.2.4",
+		"eslint": "^8.1.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.3",
+		"terser-webpack-plugin": "^5.3.1",
+		"ts-loader": "^9.2.5",
+		"typescript": "^4.4.4",
+		"webpack": "^5.52.1",
+		"webpack-cli": "^4.8.0",
+		"xmldom": "^0.6.0"
+	},
+	"dependencies": {
+		"edit-json-file": "^1.7.0",
+		"fs-extra": "^10.1.0",
+		"injection": "^1.8.6",
+		"reflect-metadata": "^0.1.13"
+	}
+}

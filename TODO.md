@@ -1,0 +1,1 @@
+1. Update Library Template and typings logic

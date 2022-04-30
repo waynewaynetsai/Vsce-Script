@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "ES2020",
+		"checkJs": true,  /* Typecheck .js files. */
+		"rootDir": ".",
+		"lib": [
+			"ES2020"
+		],
+        "typeRoots": ["./node_modules/@types", "./typings"],
+	},
+	"exclude": [
+		// "node_modules"
+	]
+}
