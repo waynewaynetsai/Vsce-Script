@@ -8,7 +8,7 @@
 		"vscode": "^1.65.0"
 	},
 	"preview": true,
-	"icon": "../logo.png",
+	"icon": "logo.png",
 	"keywords": [
 		"vim",
 		"automation"
