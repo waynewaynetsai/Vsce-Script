@@ -3,7 +3,7 @@
 	"displayName": "Vsce Script",
 	"publisher": "waynewaynetsai",
 	"description": "Extension runtime with automation api for VS Code and Vim extension",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"engines": {
 		"vscode": "^1.65.0"
 	},
