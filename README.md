@@ -567,6 +567,8 @@ registerCommand('vsce-script.workspace.disableReactExtensions', async () => {
 
 ### fs
 
+| Function            |  Type Signature                           |
+| ------------------- | ----------------------------------------- |
 | getCurrentWorkspaceFolder     | () => Promise\<vsc.WorkspaceFolder | undefined\>;|
 | copyFileOrFolder            | (source: string, target: string, option?: { overwrite: boolean; }) => Thenable<void> | 
 
