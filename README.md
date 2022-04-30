@@ -1,4 +1,4 @@
-<h2 align="center"><img src="https://i.imgur.com/3wYl1EU.png" height="128"><br>Vsce Script</h2>
+<h2 align="center"><img src="https://i.imgur.com/5KBpFdG.png" height="128"><br>Vsce Script</h2>
 <p align="center"><strong>Extension runtime with automation api for VS Code and Vim extension</strong></p>
 
 Vsce Script is a VS Code extension runtime with automation api for [VS Code](https://code.visualstudio.com/) and [Vim](https://github.com/VSCodeVim/Vim) extension.
@@ -569,8 +569,8 @@ registerCommand('vsce-script.workspace.disableReactExtensions', async () => {
 
 | Function            |  Type Signature                           |
 | ------------------- | ----------------------------------------- |
-| getCurrentWorkspaceFolder     | () => Promise\<vsc.WorkspaceFolder | undefined\>;|
-| copyFileOrFolder            | (source: string, target: string, option?: { overwrite: boolean; }) => Thenable<void> | 
+| getCurrentWorkspaceFolder     | () => Promise\<vsc.WorkspaceFolder \| undefined\>;|
+| copyFileOrFolder            | (source: string, target: string, option?: { overwrite: boolean; }) => Thenable\<void\> | 
 
 ### Interactive
 
@@ -578,7 +578,7 @@ registerCommand('vsce-script.workspace.disableReactExtensions', async () => {
 | ------------------- | ----------------------------------------- |
 | confirm             | ( title: string, placeHolder?: "Yes" \| "No", options?: vscode.QuickPickOptions) => Promise\<boolean\>;     |
 | input               | ( prompt: string, placeHolder: string, options?: vscode.InputBoxOptions) => Promise\<string\>;  |
-| dropdown            | ( title: string, items: string[], placeHolder: string, options?: vscode.QuickPickOptions) => Promise\<string | undefined>\;                     |
+| dropdown            | ( title: string, items: string[], placeHolder: string, options?: vscode.QuickPickOptions) => Promise\<string \| undefined>\;                     |
 | commandQuickpick    | ( setting: QuickpickSetting) => Promise\<void\>;     |
 
 
