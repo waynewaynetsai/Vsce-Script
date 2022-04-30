@@ -1,15 +1,24 @@
 {
 	"name": "vsce-script",
-	"displayName": "vsce-script",
+	"displayName": "Vsce Script",
 	"publisher": "waynewaynetsai",
 	"description": "vscode extension script",
 	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.65.0"
 	},
+	"keywords": [
+		"vim",
+		"automation"
+	],
 	"categories": [
 		"Other"
 	],
+	"repository": {
+		"type": "git",
+		"url": " https://github.com/waynewaynetsai/vsce-script.git"
+	},
+	"homepage": "https://github.com/waynewaynetsai/Vsce-Script",
 	"activationEvents": [
 		"*"
 	],
