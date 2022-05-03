@@ -7,6 +7,8 @@ import { init, inject, provide, scope, ScopeEnum } from 'injection';
 import { Library } from './library';
 import { Instance } from './instance';
 import fse from 'fs-extra';
+import { logger } from './logger';
+import { extractErrorMessage } from './common';
 
 const vscodeApi: typeof vscode = require('vscode');
 
@@ -53,7 +55,6 @@ export class ScriptLoader implements vscode.Disposable {
 
     public async load() {
         try {
-            console.log('lib', this.lib);
             const configPath = vscode.workspace.getConfiguration().get<string>(WorkspaceConfig.ProjectPath)!;
             if (configPath === '') {
                 vscode.window.showErrorMessage(`Should create a project path for vsce-script!`);
@@ -69,14 +70,12 @@ export class ScriptLoader implements vscode.Disposable {
                 }
             }
             await this.injectGlobalDependencies(projectPath);
-            console.log('Debug script', this.context);
-            console.log('project', projectPath);
-
-            const script = this.require(projectPath);
+            const script = this.require(configPath);
             script.activate(this.context);
         } catch (error) {
-            vscode.window.showErrorMessage('Error: ' + error);
-            console.error('ScriptLoader:error', error);
+            const message = `ScriptLoader error: ${extractErrorMessage(error)}`;
+            vscode.window.showErrorMessage(message);
+            logger.error(message);
             vscode.window.showErrorMessage(JSON.stringify(error));
         }
     }
