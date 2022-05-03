@@ -1,4 +1,4 @@
-<h2 align="center"><img src="../vsce-script/images/logo.png" height="128"><br>Vsce Script</h2>
+<h2 align="center"><img src="https://i.imgur.com/3wYl1EU.png" height="128"><br>Vsce Script</h2>
 <p align="center"><strong>Extension runtime with automation api for VS Code and Vim extension</strong></p>
 
 Vsce Script is a VS Code extension runtime with automation api for [VS Code](https://code.visualstudio.com/) and [Vim](https://github.com/VSCodeVim/Vim) extension.
