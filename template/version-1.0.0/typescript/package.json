@@ -5,7 +5,7 @@
   "engine": {
     "vscode": "^1.65.0"
   },
-  "main": "./extension.js",
+  "main": "./dist/extension.js",
   "scripts": {
     "compile": "webpack",
 		"watch": "webpack --watch",
