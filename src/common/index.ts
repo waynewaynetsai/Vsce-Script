@@ -11,3 +11,13 @@ export function extractErrorMessage(e: any) {
         return message;
     }
 };
+
+export function thenableToPromise(thenable: Thenable<any>) {
+    return new Promise((resolve, reject) => {
+        try {
+            thenable.then(data => resolve(data));
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
