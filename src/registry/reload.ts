@@ -12,9 +12,9 @@ export function registerReloadCommand(context: vscode.ExtensionContext) {
 	registerCommand('vsce-script.reloadScript', async () => {
 		const isTypescript = isTsProject();
 		if (isTypescript) {
-			const compileProject = await confirm('Compile Typescript Project ?');
-			const existProjectPath = vscode.workspace.getConfiguration('vsce-script').get<string>('projectPath');
+			const compileProject = await confirm('Compile Typescript Project ?').catch(_ => false);
 			if (compileProject) {
+				const existProjectPath = vscode.workspace.getConfiguration('vsce-script').get<string>('projectPath');
 				await execShell('npm run compile', { cwd: existProjectPath })();
 			}
 		}
