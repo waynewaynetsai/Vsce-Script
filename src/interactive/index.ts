@@ -17,10 +17,18 @@ export async function input(prompt: string, options: vscode.InputBoxOptions = {}
 }
 
 export async function confirm(title: string, placeHolder: 'Yes' | 'No' = 'Yes', options: vscode.QuickPickOptions = {}) {
-    return await vscode.window.showQuickPick(['Yes', 'No'], {
+    const answer = await vscode.window.showQuickPick(['Yes', 'No'], {
         title,
         canPickMany: false,
         placeHolder,
+        ignoreFocusOut: false,
         ...options
-    }).then(answer => answer === 'Yes');
+    });
+    if (answer === 'Yes') {
+        return Promise.resolve(true);
+    } else if (answer === 'No') {
+        return Promise.resolve(false);
+    } else {
+        return Promise.reject();
+    }
 }
