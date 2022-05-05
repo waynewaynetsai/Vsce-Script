@@ -20,11 +20,15 @@ export async function createProject() {
     console.log('existProjectPath', existProjectPath);
     if (existProjectPath && existProjectPath !== '') {
         const projectName = path.basename(existProjectPath);
-        const ok = await confirm(`You have an exist script project (${projectName}), Open this project?`);
+        const ok = await confirm(`You have an exist script project (${projectName}), Open this project?`).catch(_ => false);
         if (ok) {
-            const newWindow = await confirm('Open project in new window?');
-            await openProject(existProjectPath, { newWindow });
-            return;
+            try {
+                const newWindow = await confirm('Open project in new window?');
+                await openProject(existProjectPath, { newWindow })();
+            } catch (err) {
+                logger.info(`Stop createProject command!`);
+                return;
+            }
         }
     }
     // STEP1: ask typescript or javascript
@@ -53,9 +57,14 @@ export async function createProject() {
     console.log('projectPath', projectPath);
     const isProjectExist = fs.existsSync(projectPath);
     if (isProjectExist) {
-        const reuseProject = await confirm('Project is exist, Open this project?');
-        if (reuseProject) {
-            await invokeCommands([openProject(projectPath)]);
+        try {
+            const reuseProject = await confirm('Project is exist, Open this project?');
+            if (reuseProject) {
+                await invokeCommands([openProject(projectPath)]);
+                return;
+            }
+        } catch (err) {
+            logger.info(`Stop createProject command!`);
             return;
         }
     } else {
@@ -75,7 +84,7 @@ export async function createProject() {
         return;
     }
     const useNpm = await dropdown('Use yarn or npm ?', ['yarn', 'npm'], { placeHolder: 'npm' }) === 'npm';
-    const newWindow = await confirm('Open project at new window?');
+    const newWindow = await confirm('Open project at new window?').catch(_ => true);
     invokeCommands([
         // STEP4: install project deps
         useNpm ? spawnShell(`npm`, ['install'], { cwd: projectPath }) : spawnShell(`yarn`, [], { cwd: projectPath }),
@@ -107,10 +116,9 @@ export async function selectAnotherScriptProject() {
 export const openScriptProject = async () => {
     const existProjectPath = vscode.workspace.getConfiguration('vsce-script').get<string>('projectPath');
     if (existProjectPath) {
-        const newWindow = await confirm('Open project in new window?');
-        console.log('newWindow', newWindow);
-        console.log('existProjectPath', existProjectPath);
-        await openProject(existProjectPath, { newWindow })();
+        await confirm('Open project in new window?')
+            .then(newWindow => openProject(existProjectPath, { newWindow })())
+            .catch(_ => logger.info(`Stop openScriptProject command!`));
     } else {
         vscode.window.showInformationMessage('No project found! Please create a project first!');
     }
@@ -176,9 +184,28 @@ export const rerunLastCommand = async () => {
     }
 };
 
+async function getRecentlyUsedCommand() {
+    const commandRegistry = await Instantiator.container.getAsync<CommandRegistry>(CommandRegistry);
+    const latestCommandInfos = commandRegistry.lastExecutedCommands;
+    if (latestCommandInfos?.[0].command === 'vsce-script.showAllCommands' && latestCommandInfos?.[1]) {
+        return latestCommandInfos[1];
+    } else if (latestCommandInfos?.[0]) {
+        return latestCommandInfos?.[0];
+    } else {
+        return null;
+    }
+}
+
 export const showAllCommands = (table: CommandTable) => async (namespaces: string[] = []) => {
     const commandIds = Object.keys(table.getAll());
     const displayCommandIds = namespaces.length > 0 ? commandIds.filter(k => namespaces.some(n => k.includes(`.${n}.`))) : commandIds;
+    const quickItems = displayCommandIds.map(id => ({
+        label: id,
+    }) as vscode.QuickPickItem);
+    const recentlyUsedCommand = await getRecentlyUsedCommand();
+    if (recentlyUsedCommand) {
+        quickItems.unshift({ label: recentlyUsedCommand.command, detail: `recently used` });
+    }
     const commandId = await dropdown('Show all commands', displayCommandIds);
     if (commandId && commandId !== '') {
         await vscode.commands.executeCommand(commandId);
