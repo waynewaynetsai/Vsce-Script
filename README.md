@@ -3,25 +3,21 @@
 
 Vsce Script is a VS Code extension runtime with automation api for [VS Code](https://code.visualstudio.com/) and [Vim](https://github.com/VSCodeVim/Vim) extension.
 
-Vsce Script provide VS Code API and Library for creating smoothly operation at VS Code. You can simply create or open an Vsce Script project, then load it immediately at VS Code.
+You can use VS Code API and our library API at global for creating automatic operations with Vsce Script project at VS Code. 
 
-A Vsce Script project is a typescript or javascript project which can be dynamic loaded by Vsce-Script extension.
-
-Since Vsce Script extension inject VS Code api and it's library at global, you can write some script for control your VS Code, extend your vim command or doing something then executing it immediately.
-
-With those API, user can do many of automating operations more than traditional Vim Macro.
+With those APIs, users can crete greater automatic operations than traditional Vim Macro.
 
 ## Main Feature
 
 Here are some of the features that Vsce Script provides
 
-1. Open, create, and execute your extension project with javascript and typescript at vscode immediately.
-* We inject VS Code API at global for vsce-script extension project.
+1. Open, create, and execute your Vsce Script project with javascript and typescript at vscode immediately.
+* A Vsce Script project is a typescript or javascript project which can be dynamic loaded by Vsce-Script extension.
+* You can use [VS Code API](https://code.visualstudio.com/api/references/vscode-api) at global with vsce-script extension project.
 * You can also install third-party npm package at extension project then execute it at vscode immediately.
 2. Commands for search registered command at script project, you can execute or copied their command ID easily.
 3. Custom library api for automating your VS Code command and shell command.
-4. Custom library api for creating readable, editable and reusable macro for vim's operation.
-
+4. Custom library api for creating readable, editable and reusable macro with vim's operations.
 
 ### Make Open Source Community Better!
 
