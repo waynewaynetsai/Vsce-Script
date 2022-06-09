@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Instantiator } from '../instantiator';
+import { Instantiator } from '../instance';
 import { ScriptLoader } from '../loader';
 import { logger } from '../logger';
 import { CommandRegistry } from './registry';
