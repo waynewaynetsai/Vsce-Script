@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { commandRegisterFactory, execShell, spawnShell } from '../command';
-import { Instantiator } from '../instantiator';
+import { commandRegisterFactory, execShell } from '../command';
+import { Instantiator } from '../instance';
 import { confirm } from '../interactive';
 import { ScriptLoader } from '../loader';
 import { CommandRegistry } from './registry';
