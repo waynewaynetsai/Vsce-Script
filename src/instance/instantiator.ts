@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import { Container } from "injection";
 import { Instance } from "./instance";
-import { Library } from './library';
-import { ScriptLoader } from './loader';
-import { CommandRegistry } from './registry';
-import { Configuration } from './configuration';
+import { Library } from '../library';
+import { ScriptLoader } from '../loader';
+import { CommandRegistry } from '../registry';
+import { Configuration } from '../configuration';
 
 export class Instantiator {
   private static _container: Container;
