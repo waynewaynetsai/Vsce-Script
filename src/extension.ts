@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import * as vscode from 'vscode';
 import { logger } from './logger';
 import { Library } from './library';
-import { Instantiator } from './instantiator';
+import { Instantiator } from './instance';
 import { registerReloadCommand, registerWorkspaceChangeEvent } from './registry';
 
 export async function activate(context: vscode.ExtensionContext) {

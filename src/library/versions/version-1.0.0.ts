@@ -3,7 +3,7 @@ import { commandQuickpick, CommandRegistry } from "../../registry";
 import { confirm, dropdown, input } from "../../interactive";
 import { execCmd, execShell, invokeCommands, runAutomation, runCommands, runMacro, spawnShell, type, typeCharUnderCursor, typeKeys, writeText } from '../../command';
 import { copyFileOrFolder, createNewFile, createNewFolder, findFirstOccurCharAboveCursor, findFirstOccurCharAtLine, getCharAt, getCharUnderCursor, getCurrentLine, getCurrentWorkspaceFolder, getCursorPosition, getFirstCharOnLine, getLine, getSelectedText, setCursorPosition, switchToInsertModeSelection } from '../../editor'; 
-import { Instantiator } from '../../instantiator';
+import { Instantiator } from '../../instance/instantiator';
 
 export const getLib = async () => {
     const registry = await Instantiator.container.getAsync<CommandRegistry>(CommandRegistry);
