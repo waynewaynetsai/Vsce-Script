@@ -6,7 +6,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { QuickpickCommandItem, QuickpickSetting } from "../models";
-import { Instantiator } from "../instantiator";
+import { Instantiator } from "../instance";
 import { CommandRegistry } from "./registry";
 import { CommandTable } from "./table";
 import { Library } from "../library";
